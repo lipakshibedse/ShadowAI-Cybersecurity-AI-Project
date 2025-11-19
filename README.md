@@ -61,7 +61,7 @@ Then open: http://localhost:8501 in your browser.
 4. Select your repo and deploy  
 5. Done 🎉 Your app will be live at:
    ```
-   https://shadowai-yourname.streamlit.app
+   https://shadowai-cybersecurity-ai-project-je6qlndnxnzhdifkygvnnq.streamlit.app/
    ```
 
 ---
