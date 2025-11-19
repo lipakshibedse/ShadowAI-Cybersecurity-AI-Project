@@ -3,5 +3,4 @@ pandas
 numpy
 joblib
 scikit-learn
-sqlite3-binary
 matplotlib
