@@ -75,7 +75,7 @@ No confidential company data is exposed publicly.
 #### 👩‍💼 Developer  
 **Lipakshi Bedse**  
 MBA (AI & ML) | Cybersecurity & Data Analytics Enthusiast  
-📧 [add your email here]  
+📧 [lipakshibedse20@gmail.com]  
 📍 India  
 ## 🛡️ License
 This project is for educational and research purposes only.
