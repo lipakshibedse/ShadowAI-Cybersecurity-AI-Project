@@ -105,11 +105,12 @@ Run the Streamlit app: streamlit run app/app.py
 All datasets and models are stored locally or in private repositories.  
 No confidential company data is exposed publicly.
 
-
+---
 
 
 
 📊 Machine Learning Model
+```
 
 Random Forest Classifier
 Trained using synthetic but realistic cybersecurity logs
@@ -122,8 +123,10 @@ Potential Threat
 
 
 
+---
 
 
+---
 🚧 Future Scope
 
 Deploy backend on cloud with API
@@ -133,7 +136,10 @@ Deep learning-based threat detection
 User behavior analytics
 
 
+---
 
+
+---
 
 #### 👩‍💼 Developer  
 **Lipakshi Bedse**  
@@ -143,4 +149,4 @@ MBA (AI & ML) | Cybersecurity & Data Analytics Enthusiast
 ## 🛡️ License
 This project is for educational and research purposes only.
 
-
+---
