@@ -99,11 +99,14 @@ Run the Streamlit app: streamlit run app/app.py
 
 ---
 
+
+
 #### 🔒 Security Note  
 All datasets and models are stored locally or in private repositories.  
 No confidential company data is exposed publicly.
 
 ---
+
 
 
 📊 Machine Learning Model
@@ -119,6 +122,8 @@ Potential Threat
 
 ---
 
+
+
 🚧 Future Scope
 
 Deploy backend on cloud with API
@@ -129,7 +134,9 @@ User behavior analytics
 
 ---
 
----
+
+
+
 #### 👩‍💼 Developer  
 **Lipakshi Bedse**  
 MBA (AI & ML) | Cybersecurity & Data Analytics Enthusiast  
