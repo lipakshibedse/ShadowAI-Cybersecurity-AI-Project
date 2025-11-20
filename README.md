@@ -12,13 +12,13 @@ Click below to try the deployed web app:
 🔗 **https://shadowai-cybersecurity-ai-project-je6qlndnxnzhdifkygvnnq.streamlit.app/**
 
 [![Streamlit App] (https://img.shields.io/badge/Streamlit-Live%20Demo-brightgreen?style=for-the-badge&logo=streamlit)]
-                  (https://shadowai-cybersecurity-ai-project-je6qlndnxnzhdifkygvnnq.streamlit.app/)
+                    (https://shadowai-cybersecurity-ai-project-je6qlndnxnzhdifkygvnnq.streamlit.app/)
 
 ---
 
 ## 📌 About the Project
-ShadowAI is built to assist cybersecurity teams with **smart anomaly detection** using a trained machine-learning model.  
-It analyzes event logs, user behaviors, and system actions to determine whether an activity is:
+ ShadowAI is built to assist cybersecurity teams with **smart anomaly detection** using a trained machine-learning model.  
+ It analyzes event logs, user behaviors, and system actions to determine whether an activity is:
 
 - ✔ Normal  
 - ⚠ Suspicious  
@@ -37,18 +37,20 @@ The system uses a Random Forest Classifier trained on simulated cybersecurity lo
 ✅ Scalable, clean, and modular project structure 
 ✅ User-friendly Streamlit dashboard  
 
+
 ---
+
 
 #### 🧠 Tech Stack  
 | Layer | Technology Used |
 |--------|----------------|
 | **Frontend (UI)** | Streamlit (Python-based interactive web app) |
 | **Backend (Logic)** | Python + ML Model (Random Forest) |
-|**Machine Learning:** scikit-learn (Random Forest) |  
+|**Machine Learning** | scikit-learn (Random Forest) |  
 | **Database** | SQLite3 (stored as `shadowai.db`) |
 | **Libraries** | pandas, numpy, matplotlib, scikit-learn, joblib |
-|**Data Handling:** Pandas, NumPy | 
-|**Model Storage:** Joblib | 
+|**Data Handling** | Pandas, NumPy | 
+|**Model Storage** | Joblib | 
 
 ---
 
@@ -102,38 +104,32 @@ All datasets and models are stored locally or in private repositories.
 No confidential company data is exposed publicly.
 
 ---
+
+
 📊 Machine Learning Model
 
 Random Forest Classifier
-
 Trained using synthetic but realistic cybersecurity logs
-
 Feature scaling applied using StandardScaler
-
 Model and scaler stored in /models/ directory
-
 Performs multi-class classification for:
-
 Normal Activity
-
 Suspicious Activity
-
 Potential Threat
+
+---
 
 🚧 Future Scope
 
 Deploy backend on cloud with API
-
 Real-time log ingestion
-
 Threat database integration
-
 Deep learning-based threat detection
-
 User behavior analytics
 
 ---
 
+---
 #### 👩‍💼 Developer  
 **Lipakshi Bedse**  
 MBA (AI & ML) | Cybersecurity & Data Analytics Enthusiast  
