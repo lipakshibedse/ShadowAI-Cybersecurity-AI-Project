@@ -105,7 +105,7 @@ Run the Streamlit app: streamlit run app/app.py
 All datasets and models are stored locally or in private repositories.  
 No confidential company data is exposed publicly.
 
----
+
 
 
 
@@ -120,7 +120,7 @@ Normal Activity
 Suspicious Activity
 Potential Threat
 
----
+
 
 
 
@@ -132,9 +132,7 @@ Threat database integration
 Deep learning-based threat detection
 User behavior analytics
 
----
 
----
 
 
 #### 👩‍💼 Developer  
@@ -146,4 +144,3 @@ MBA (AI & ML) | Cybersecurity & Data Analytics Enthusiast
 This project is for educational and research purposes only.
 
 
----
