@@ -108,9 +108,8 @@ No confidential company data is exposed publicly.
 ---
 
 
-
-📊 Machine Learning Model
 ```
+📊 Machine Learning Model
 
 Random Forest Classifier
 Trained using synthetic but realistic cybersecurity logs
@@ -121,12 +120,8 @@ Normal Activity
 Suspicious Activity
 Potential Threat
 
-
-
 ---
 
-
----
 🚧 Future Scope
 
 Deploy backend on cloud with API
@@ -138,9 +133,6 @@ User behavior analytics
 
 ---
 
-
----
-
 #### 👩‍💼 Developer  
 **Lipakshi Bedse**  
 MBA (AI & ML) | Cybersecurity & Data Analytics Enthusiast  
@@ -148,5 +140,3 @@ MBA (AI & ML) | Cybersecurity & Data Analytics Enthusiast
 📍 India  
 ## 🛡️ License
 This project is for educational and research purposes only.
-
----
