@@ -12,10 +12,13 @@ st.title("🚨 AI Misuse & Shadow AI Detection Dashboard")
 
 # ---------------------------
 # Paths (safe)
-base_dir = os.path.dirname(os.path.abspath(__file__))        # app/ directory
+base_dir = os.path.dirname(os.path.abspath(__file__))
+
 data_path = os.path.join(base_dir, '..', 'data', 'simulated_shadow_ai_logs.csv')
 rf_path = os.path.join(base_dir, '..', 'models', 'rf_model.joblib')
 scaler_path = os.path.join(base_dir, '..', 'models', 'scaler.joblib')
+
+
 
 # ---------------------------
 # Load dataset safely
@@ -154,52 +157,108 @@ st.markdown("---")
 
 # ---------------------------
 # Model prediction panel (manual input)
+# ---------------------------
+
 st.subheader("🧠 AI Prediction Panel (Use trained model)")
 
 model_loaded = False
+
+# ---------------------------
+# FIXED feature list (must match training exactly)
+# ---------------------------
+feature_list = [
+    'prompt_length',
+    'usage_time',
+    'department_Finance',
+    'department_HR',
+    'department_IT',
+    'department_Operations',
+    'department_Sales',
+    'tool_Bard',
+    'tool_ChatGPT',
+    'tool_Claude',
+    'tool_Copilot',
+    'tool_Gemini',
+    'sensitive_data_No',
+    'sensitive_data_Yes'
+]
+
+
 if os.path.exists(rf_path) and os.path.exists(scaler_path):
     try:
         rf_model = joblib.load(rf_path)
         scaler = joblib.load(scaler_path)
+
+        # Load the required feature list
+        #feature_list_path = os.path.join(base_dir, "models", "feature_list.json")
+
         model_loaded = True
-        st.success("Model loaded. You can predict risk for custom inputs.")
+        st.success("Model + Scaler + Feature List loaded successfully!")
     except Exception as e:
-        st.error(f"Model files found but failed to load: {e}")
+        st.error(f"Error loading model or scaler: {e}")
 else:
-    st.warning("Trained model not found in models/. Prediction panel will be disabled. (Run model_training.py to create model.)")
+    st.warning("Model files missing. Run train_model.py first.")
 
 with st.form("predict_form"):
     col1, col2, col3 = st.columns(3)
     dept_in = col1.selectbox("Department", depts)
     tool_in = col2.selectbox("Tool", tools)
     prompt_len_in = col3.number_input("Prompt length (words)", min_value=0, value=50)
-    sensitive_in = col1.selectbox("Sensitive data included?", ["No","Yes"])
+
+    sensitive_in = col1.selectbox("Sensitive data included?", ["No", "Yes"])
     usage_time_in = col2.number_input("Usage time (minutes)", min_value=0, value=5)
+
     submitted = st.form_submit_button("Predict Risk")
 
 if submitted:
-    # Prepare feature vector - here we must match what the model expects.
-    # For demo, we will assemble simple numeric features used in training:
-    # features = ['prompt_length','sensitive','usage_time'] etc.
     if not model_loaded:
-        st.error("Model not loaded. Can't predict.")
+        st.error("Model not loaded.")
     else:
-        # simple preprocessing compatible with typical training script used earlier
-        # sensitive -> numeric
-        s_val = 1 if str(sensitive_in).lower() == 'yes' else 0
-        # Build vector in same column order used during training.
-        # IF your model was trained on one-hot dummies, full integration would need same columns.
-        # Here we assume model trained on [prompt_length, sensitive, usage_time] (modify if different).
-        X_new = np.array([[prompt_len_in, s_val, usage_time_in]])
+        # 1️⃣ Empty feature row (same as training)
+        input_row = {col: 0 for col in feature_list}
+
+        # 2️⃣ Department one-hot
+        dept_col = f"department_{dept_in}"
+        if dept_col in input_row:
+            input_row[dept_col] = 1
+
+        # 3️⃣ Tool one-hot (ALL tools exist)
+        for tool in ["Bard", "ChatGPT", "Claude", "Copilot", "Gemini"]:
+            col = f"tool_{tool}"
+            if col in input_row:
+                input_row[col] = 1 if tool == tool_in else 0
+
+        # 4️⃣ Sensitive data one-hot
+        if sensitive_in == "Yes":
+            input_row["sensitive_data_Yes"] = 1
+            input_row["sensitive_data_No"] = 0
+        else:
+            input_row["sensitive_data_No"] = 1
+            input_row["sensitive_data_Yes"] = 0
+
+        # 5️⃣ Numeric values
+        input_row["prompt_length"] = prompt_len_in
+        input_row["usage_time"] = usage_time_in
+
+        # 6️⃣ DataFrame + SAME ORDER
+        X_new = pd.DataFrame([input_row])
+        X_new = X_new[feature_list]   # 🔥 THIS LINE IS VERY IMPORTANT
+
         try:
             X_new_scaled = scaler.transform(X_new)
-            pred_proba = rf_model.predict_proba(X_new_scaled)[0][1]  # probability of "risky"
-            pred_label = "High" if pred_proba >= 0.7 else ("Medium" if pred_proba >= 0.4 else "Low")
-            st.success(f"Predicted risk score: {pred_proba:.2f} → {pred_label} risk")
-            if pred_proba >= 0.7:
-                st.error("🚨 ALERT: Predicted HIGH risk. Take immediate action (review / block).")
-        except Exception as e:
-            st.error(f"Prediction failed — model/scaler mismatch. Error: {e}")
+            pred_proba = rf_model.predict_proba(X_new_scaled)[0][1]
 
-st.markdown("---")
-st.write("💡 Tip: For production, ensure model's feature columns & preprocessing match exactly between training and this app.")
+            if pred_proba < 0.3:
+                level = "Low"
+            elif pred_proba < 0.6:
+                level = "Medium"
+            else:
+                level = "High"
+
+            st.success(f"Predicted Risk Score: {pred_proba:.2f} → {level} Risk")
+
+            if level == "High":
+                st.error("🚨 HIGH RISK — Immediate Review Needed")
+
+        except Exception as e:
+            st.error(f"Prediction failed: {e}")
