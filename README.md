@@ -9,7 +9,7 @@ A machine-learning powered cybersecurity monitoring system designed to detect an
 
 Click below to try the deployed web app:
 
-🔗 **https://shadowai-cybersecurity-ai-project-je6qlndnxnzhdifkygvnnq.streamlit.app/**
+🔗 https://shadowai-cybersecurity-ai-project-je6qlndnxnzhdifkygvnnq.streamlit.app/
 
 [![Streamlit App] (https://img.shields.io/badge/Streamlit-Live%20Demo-brightgreen?style=for-the-badge&logo=streamlit)]
                     (https://shadowai-cybersecurity-ai-project-je6qlndnxnzhdifkygvnnq.streamlit.app/)
